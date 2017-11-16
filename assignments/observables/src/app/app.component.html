@@ -1,0 +1,18 @@
+<section class="container">
+  <section class="row">
+    <div class="col-lg-12">
+      <a routerLink="/">Home</a>
+      <a [routerLink]="['user', 1]">user1 {{ user1Activated ? '(activated)' : ''}}</a>
+      <a [routerLink]="['user', 2]">user2 {{ user2Activated ? '(activated)' : ''}}</a>
+    </div>
+  </section>
+  <hr>
+  <section class="row">
+    <div class="col-lg-12">
+      <!-- <app-home></app-home>
+      <app-user></app-user> -->
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</section>
+

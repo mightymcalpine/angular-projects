@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Bind it!</h3>
+      <ol>
+        <del><li>Create three new components: GameControl, Odd and Even</li></del>
+        <del><li>The GameControl Component should have buttons to start and stop the game</li></del>
+        <del><li>When starting the game, an event (holding a incrementing number)
+          should get emitted each second (ref = setInterval())</li></del>
+        <del><li>The event should be listenable from outside the component</li></del>
+        <del><li>When stopping the game, no more events should get emitted (clearInterval(ref))</li></del>
+        <del><li>A new Odd component should get created for every odd number emitted,
+          the same should happen for the Even Component (on even numbers)</li></del>
+        <del><li>Simply output Odd - NUMBER or Even - NUMBER in the two components</li></del>
+        <del><li>Style the element (e.g. paragraph) holding your output text differently in both components</li></del>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-game-control (counterFired)="onCounterFired($event)"></app-game-control>
+      <app-even *ngFor="let even of evenNumbers" [number]="even"></app-even>
+      <!-- binding to the number property in even/odd comp.ts file which we exposed via @Input to this app comp -->
+      <!-- then we set the value of the bound property to the temp variable of the for loop -->
+      <app-odd *ngFor="let odd of oddNumbers" [number]="odd"></app-odd>
+    </div>
+  </div>
+  <!-- .row>.col-xs-12 -->
+</div>
+
+

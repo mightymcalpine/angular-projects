@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+        <!-- routerLink directive prevents default behavior, which is to send an http request,
+          it then analyzes and parses the string which is a path or array of path elements and
+          looks for a match in the route config we defined in app.module -->
+        <li role="presentation"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/">Home</a>
+          <!-- use property binding to resolve something dynamically like an obj here -->
+        </li>
+        <!--
+          a slash /, represents and absolute path, always get apended to the root domain
+          no slash or ./, represents a relative path, which will get appended to the currently loaded path,
+            the relative path is added to the current path
+          *** so here, we are at the root component, well, here root component is localhost:4200/
+            the slash is already included so we can use a relative path
+         -->
+        <li role="presentation"
+          routerLinkActive="active">
+          <a routerLink="servers">Servers</a>
+        </li>
+        <!-- array notation, binding to routerLink allows for quick construction of more
+          complex routes -->
+        <li role="presentation"
+          routerLinkActive="active">
+          <a [routerLink]="['users']">Users</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- directive, just loads currently active component -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-users></app-users>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-servers></app-servers>
+    </div>
+  </div> -->
+</div>

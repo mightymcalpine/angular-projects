@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <!--
+          - ngModel is a directive that tells Angular that this input is a control element of our form
+            - first input just below here, using ngModel with no binding
+          - angular creates a form object in the DOM with a value property, the value is populated with key/value pairs
+          - from using the ngModel directive and the name attribute, there we can see/get the data the user inputs
+        -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" name="username" placeholder="your name" ngModel required>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success btn-md">Suggest a username</button>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <!--
+            - using some Angular validors, required, email
+            - check the valid property of the form object in chrome dev tools
+           -->
+          <input type="text" id="email" class="form-control" name="email" placeholder="you@email.com"
+            ngNativeValidate ngModel required email #email="ngModel">
+          <span class="help-block" *ngIf="email.invalid && email.touched">Please enter a valid email address!</span>
+        </div>
+        <!--
+          - use ngModelGroup to group form controls into one object
+          - also used local ref set to ngModelGroup to apply targeted validations to that group of controls
+         -->
+        <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+          <div class="form-group">
+            <label for="secret">Secret Question</label>
+            <select name="secret" id="secret" class="form-control" name="secret" ngModel required>
+              <option value=""></option>
+              <option value="character">Who is you're favorite Star Wars character?</option>
+              <option value="film">What is your favorite Star Wars film?</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <!--
+              - using ngModel with two way property binding to get the input value from the user or display the
+              input value immediately as I'm doing here
+            -->
+            <textarea name="answer" [(ngModel)]="viewAnswer" rows="1" class="form-control" required></textarea>
+            <p>You answered: {{viewAnswer}}</p>
+          </div>
+          <span class="help-block" *ngIf="!userData.valid && userData.touched">Please select a secret question</span>
+        </div>
+        <div class="form-group">
+          <label for="favColor">Favorite Color</label>
+          <!--
+            - adding a defualt value via one way property binding with ngModel and a proptery of the this component class
+            - ex. a user enters their name, get the name, assign to a property, assign it to another input
+            where you're asking for their name again - dynamic ex
+          -->
+          <input type="text" id="favColor" class="form-control" name="favColor" [ngModel]="favColor" required>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label for="gender">
+            <input id="gender" name="gender" [value]="gender" type="radio" ngModel>
+            {{ gender }}
+          </label>
+        </div>
+        <div class="form-group">
+          <h4>Do you like pizza?</h4>
+          <div class="radio" *ngFor="let choice of likePizza">
+            <label for="pizza">
+              <input id="pizza" name="pizza" type="radio" [value]="choice" [ngModel]="defaultLikePizza">
+              {{ choice }}
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-md" type="submit" [disabled]="f.invalid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

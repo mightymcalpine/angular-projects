@@ -1,0 +1,15 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.container {
+  margin-top: 35px;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid #ee5d28;
+}
+.help-block {
+  color: #ee5d28;
+}

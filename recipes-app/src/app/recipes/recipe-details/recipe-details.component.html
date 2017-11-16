@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="image-responsive">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ recipe.name }}</h1>
+    <h5><em>{{ recipe.desc }}</em></h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+    <h4>Ingredients</h4>
+    <ul class="list-group">
+      <a class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+        {{ ingredient.name }} - {{ingredient.amount}}</a>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div appDropdown class="btn-group">
+      <button class="btn btn-primary btn-sm dropdown-toggle">
+        Manage Recipe <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <!--
+            as is, this add to shopping list link, adds all the ingredients below
+            build so that you can click on individual ingredients and only add/pass
+            the ingredients that were clicked
+          -->
+          <li><a (click)="onAddToShopList()">Add to Shopping List</a></li>
+          <li><a (click)="onEditRecipe()" >Edit Recipe</a></li>
+          <li><a>Delete Recipe</a></li>
+        </ul>
+    </div>
+  </div>
+</div>
